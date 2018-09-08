@@ -14,3 +14,5 @@ const customizationOptions = {
 
 export const UserTC = composeWithMongoose(User, customizationOptions);
 export default UserTC;
+
+import {Facebook, FacebookApiException} from 'fb';
