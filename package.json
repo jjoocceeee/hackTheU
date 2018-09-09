@@ -69,6 +69,8 @@
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
     "react": "^16.4.1",
+    "react-animated-number": "^0.4.4",
+    "react-countup": "^4.0.0-alpha.6",
     "react-dom": "^16.5.0",
     "recharts": "^1.2.0",
     "sequelize": "^4.37.10",

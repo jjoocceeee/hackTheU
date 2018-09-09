@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
     description: "Max amount of money to put into savings account",
     default: 1000
   },
-  BankAccount: {
+  BankAccountId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'BankAccount'
   },
@@ -57,12 +57,15 @@ UserSchema.pre('save', async function(next)
       checking: 500,
       savings: 0
     });
+
     const socialProfile = await SocialProfile.create({
       interactions: 1237,
       dailyInteractions: 74
     });
     console.log(bankAccount);
     console.log(socialProfile);
+    this.BankAccountId = bankAccount._id;
+
   }
   return next();
 });

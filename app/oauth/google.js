@@ -55,8 +55,6 @@ const Handler = async ({req, accessToken, refreshToken, profile}) => {
     username: profile.id
   });
   let gu = await CreateGoogleUser(profile);
-  console.log(gu);
-  console.log(user);
   await User.updateOne({_id: user._id}, { $set: { googleId: gu._id } });
   return user;
 }
