@@ -1,1 +1,1 @@
-web: nodemon ./app/server.js --exec babel-node -e graphql,js,json,env
+web: nodemon --exec babel-node tools/run start -e graphql,js,json,env

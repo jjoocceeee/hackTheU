@@ -22,8 +22,8 @@ SocialProfileTC.addResolver(new Resolver({
   name: 'facebookEngagements',
 	description: 'bla',
   resolve: async ({ source, args, context, info }) => {
-    var data = await FB.api("me/feed?fields=reactions.summary(true)");
-    console.log(data);
+    var res = await context.fb.api("me/feed?fields=reactions.summary(true)", { access_token: process.env.ACCESS_TOKEN });
+    console.log(res.data[0].reactions);
     return null;
   }
 }))

@@ -18,7 +18,7 @@ const extractProfile = profile => {
   };
 }
 
-module.exports = new GoogleStrategy({
+export const googleStrategy = new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL:`${process.env.WEB_URI}/auth/google/callback`,
@@ -70,3 +70,5 @@ const CreateGoogleUser = async (profile) => {
   if (res.errors) console.log(res.errors);
   return res.result;
 }
+
+export default googleStrategy;
