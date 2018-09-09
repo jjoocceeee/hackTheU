@@ -1,2 +1,3 @@
 export { UserQueries, UserMutations } from './userSchema';
-export { SocialProfileQueries, SocialProfileMutations } from './socialProfileSchema';
+export { SocialProfileQueriesTC, SocialProfileMutationsTC } from './socialProfileSchema';
+export { BankAccountQueriesTC, BankAccountMutationsTC } from './bankAccountSchema';

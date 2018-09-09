@@ -14,7 +14,17 @@ const UserSchema = new mongoose.Schema({
     description: 'The id of the google user in the database.',
     index: true
   },
-  socialIds: {
+  maxSavings: {
+    type: String,
+    required: true,
+    description: "Max amount of money to put into savings account",
+    index: true
+  },
+  BankAccount: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'BankAccount'
+  },
+  socialProfileID: {
     type: [{
       type: Types.ObjectId,
       ref: 'GoogleUser',

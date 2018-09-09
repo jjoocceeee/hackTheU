@@ -9,6 +9,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
+_data
+
+
 # Runtime data
 pids
 *.pid
@@ -60,6 +64,9 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# batch files
+*.bat
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
