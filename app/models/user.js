@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     index: true
   },
   maxSavings: {
-    type: int,
+    type: String,
     required: true,
     description: "Max amount of money to put into savings account",
     index: true
