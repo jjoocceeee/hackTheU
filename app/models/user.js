@@ -62,11 +62,7 @@ UserSchema.pre('save', async function(next)
       checking: 500,
       savings: 0
     });
-<<<<<<< HEAD
     this.BankAccountId = bankAccount._id;
-=======
-    // this.bankingid = banking._id;
->>>>>>> 30d2cba4438c9c6cb5423ffbc38cb2b5bfd6cacc
   }
   return next();
 });
