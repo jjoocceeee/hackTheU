@@ -31,7 +31,7 @@ UserTC.addRelation('BankAccount', {
 UserTC.addRelation('SocialProfile', {
   resolver: () => SocialProfileTC.getResolver('findById'),
   prepareArgs: {
-    _id: (sourc) =>source.socialProfileId,
+    _id: (sourc) => source.socialProfileId,
   },
   projection: {SocialProfileId: true},
 });
