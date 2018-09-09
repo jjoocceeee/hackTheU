@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt-nodejs';
 import findOrCreate from 'findorcreate-promise';
 
 const Types = mongoose.Schema.Types;
