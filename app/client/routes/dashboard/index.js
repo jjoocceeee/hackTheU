@@ -12,11 +12,11 @@ import Dashboard from './Dashboard';
 import Layout from '../../components/Layout';
 
 async function action({ fetch }) {
-  const resp = await fetch('/graphql', {
+  const req = await fetch('/graphql', {
     body: JSON.stringify({
       query: `query{
          BankAccount{
-          BankAccountById(_id: "5b95443618c6e8f8347129da"){
+          BankAccountById(_id: "5b95580e43ef4eb29c474190"){
             checking,
             savings
           }
@@ -25,13 +25,28 @@ async function action({ fetch }) {
       `,
     }),
   });
-  const { data } = await resp.json();
+  const req2 = await fetch('/graphql', {
+    body: JSON.stringify({
+      query: `query{
+        SocialProfile{
+          SocialProfileById(_id: "5b95580e43ef4eb29c474191"){
+            interactions,
+            dailyInteractions
+          }
+        }
+      }
+      `,
+    }),
+  });
+
+  const resp1 = await req.json();
+  const resp2 = await req2.json();
   return {
     title: 'Dashboard',
     chunks: ['home'],
     component: (
       <Layout user={true}>
-        <Dashboard data={data}/>
+        <Dashboard bank={resp1.data} social={resp2.data}/>
       </Layout>
     ),
   };

@@ -65,7 +65,10 @@ UserSchema.pre('save', async function(next)
     console.log(bankAccount);
     console.log(socialProfile);
     this.BankAccountId = bankAccount._id;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4c8b4f00b0433ad5544a008d5e3d8318b9c99aa4
   }
   return next();
 });
