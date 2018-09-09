@@ -217,4 +217,11 @@ app.listen({ port: process.env.PORT }, () =>
   console.log(`🚀 Server ready at ${process.env.WEB_URI}${server.graphqlPath}`)
 );
 
+//
+// Hot Module Replacement
+// -----------------------------------------------------------------------------
+if (module.hot) {
+  app.hot = module.hot;
+  module.hot.accept('./client/router');
+}
 export default app;

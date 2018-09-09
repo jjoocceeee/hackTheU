@@ -496,6 +496,10 @@ const serverConfig = {
     __filename: false,
     __dirname: false,
   },
+  devServer: {
+    hot: true,
+    inline: true
+  }
 };
 
 export default [clientConfig, serverConfig];
