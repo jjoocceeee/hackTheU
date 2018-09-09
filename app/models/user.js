@@ -33,10 +33,32 @@ const UserSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+// UserSchema.pre('save', async function(next)
+// {
+//   return next();
+// });
+
+// UserSchema.plugin(findOrCreate);
+
 UserSchema.pre('save', async function(next)
 {
+  var user = this;
+  // Copy the username field into the unique.
+  user.username_unique = user.username;
+  if (this.isNew)
+  {
+    const bankAccount = await BankAccount.create({
+      checking: 500,
+      savings: 0
+    });
+    this.bankingid = banking._id;
+  }
   return next();
-})
+});
+
+
+
+
 
 export const User = mongoose.model('User', UserSchema);
 export default User;

@@ -18,23 +18,39 @@ export default BankAccountTC;
 
 
 
+
 BankAccountTC.addResolver(new Resolver({
   name: 'updateChecking',
-	description: 'Will update Checking account.',
+  description: 'Will update Checking account.',  
+  args: {
+    amount: 'Int!',
+  },
+  type: BankAccountTC,
   resolve: async ({ source, args, context, info }) => {
+    var a = await BankAccount.findOne({_id:context.user.checking});
+    BankAccount.updateOne({_id:context.user.checking,}, {$set:{
+      checking : a.checking + args.amount
+    }});
     console.log(args);
     return null;
-  }
+  },
 }));
 
 BankAccountTC.addResolver(new Resolver({
   name: 'updateSavings',
-	description: 'Will update Saving account.',
+  description: 'Will update Saving account.',
+  args:{
+    amount: 'Int!'
+  },
   resolve: async ({ source, args, context, info }) => {
+    var a = await BankAccount.findOne({_id:context.user.saving});
+    BankAccount.updateOne({_id:context.user.saving,}, {$set:{
+      checking : a.saving + args.amount
+    }});
     console.log(args);
-    return null;
+    return BankAccount.findOne({_id:context.user.saving});
   }
-}))
+}));
 
 // bankAccountTC.addResolver(new Resolver({
 //   name: 'facebookEngagements',
