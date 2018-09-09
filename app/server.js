@@ -117,9 +117,9 @@ const formatError = error => {
     ? { message, details, stack, locations, path, extensions }
     : { message, details, stack, locations, path };
 }
-
+import {default as Context} from './context' ;
 const context = ({req, res}) => {
-  return require('./context')({req, db, res, fb})
+  return Context({req, db, res, fb})
 }
 
 import { default as graphqlSchema } from './schema';
