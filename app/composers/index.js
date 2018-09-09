@@ -1,4 +1,4 @@
 export { UserTC } from './userTC';
 export { GoogleUserTC } from './googleUserTC';
-export { socialProfileTC } from './socialProfile';
+export { SocialProfileTC } from './socialProfile';
 export { BankAccountTC } from './BankAccountTC';

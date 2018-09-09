@@ -1,4 +1,4 @@
 export { User } from './user';
 export { GoogleUser } from './googleUser';
-export { socialProfile } from './socialProfile';
+export { SocialProfile } from './socialProfile';
 export { bankAccount } from './bankAccount';
