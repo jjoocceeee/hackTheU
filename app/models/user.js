@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 import bcrypt from 'bcrypt-nodejs';
 import findOrCreate from 'findorcreate-promise';
+import BankAccount from './bankAccount';
 
 const Types = mongoose.Schema.Types;
 const UserSchema = new mongoose.Schema({
@@ -27,7 +28,7 @@ const UserSchema = new mongoose.Schema({
     description: "Max amount of money to put into savings account",
     default: 1000
   },
-  BankAccount: {
+  BankAccountId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'BankAccount'
   },
@@ -68,7 +69,7 @@ UserSchema.pre('save', async function(next)
       checking: 500,
       savings: 0
     });
-    this.bankingid = banking._id;
+    this.BankAccountId = bankAccount._id;
   }
   return next();
 });

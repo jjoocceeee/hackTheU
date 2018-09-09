@@ -20,7 +20,7 @@ class Header extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <Navigation />
+          <Navigation user={this.props.user}/>
           <Link className={s.brand} to="/">
             {/* <img
               src={logoUrl}

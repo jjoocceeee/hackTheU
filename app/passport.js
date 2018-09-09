@@ -9,6 +9,7 @@ import GoogleStrategy from './oauth/google';
 passport.use(GoogleStrategy);
 
 const cookieExtractor = req => {
+  console.log("COOKIES: " + req.cookies);
   return (req && req.cookies) ? req.cookies.jwt : null;
 };
 

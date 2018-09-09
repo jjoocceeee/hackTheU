@@ -8,16 +8,17 @@
  */
 
 import React from 'react';
-import Home from './Home';
+import Dashboard from './Dashboard';
 import Layout from '../../components/Layout';
 
 async function action({ fetch }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: `{
-        user {
-          userSignedIn {
-            username
+      query: `query{
+         BankAccount{
+          BankAccountById(_id: "5b95443618c6e8f8347129da"){
+            checking,
+            savings
           }
         }
       }
@@ -25,13 +26,12 @@ async function action({ fetch }) {
     }),
   });
   const { data } = await resp.json();
-  let user = data.user.userSignedIn;
   return {
-    title: 'Home',
+    title: 'Dashboard',
     chunks: ['home'],
     component: (
-      <Layout user={user}>
-        <Home />
+      <Layout user={true}>
+        <Dashboard data={data}/>
       </Layout>
     ),
   };
