@@ -57,7 +57,6 @@ UserSchema.pre('save', async function(next)
       checking: 500,
       savings: 0
     });
-<<<<<<< HEAD
 
     const socialProfile = await SocialProfile.create({
       interactions: 1237,
@@ -66,10 +65,6 @@ UserSchema.pre('save', async function(next)
     console.log(bankAccount);
     console.log(socialProfile);
     this.BankAccountId = bankAccount._id;
-
-=======
-    this.BankAccountId = bankAccount._id;
->>>>>>> 04301123cbe5c7e7a4ed9482b445d1460447780e
   }
   return next();
 });
