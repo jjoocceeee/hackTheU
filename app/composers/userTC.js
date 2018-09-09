@@ -5,7 +5,7 @@ const customizationOptions = {
   resolvers: {
     createOne: {
       record: {
-        requiredFields: ['username'],
+        requiredFields: ['username', 'maxSavings'],
         removeFields: ['_id', 'createdAt', 'updatedAt']
       },
     }
