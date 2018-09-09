@@ -129,6 +129,6 @@ app.use('/graphql', Authenticate);
 app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }));
 
 // ============== /GRAPHQL =============
-app.listen({ port: 4000 }, () =>
+app.listen({ port: process.env.PORT }, () =>
   console.log(`🚀 Server ready at ${process.env.WEB_URI}${server.graphqlPath}`)
 );
