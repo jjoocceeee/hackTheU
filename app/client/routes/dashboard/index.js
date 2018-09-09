@@ -28,10 +28,9 @@ async function action({ fetch }) {
   const req2 = await fetch('/graphql', {
     body: JSON.stringify({
       query: `query{
-        SocialProfile{
-          SocialProfileById(_id: "5b95580e43ef4eb29c474191"){
-            interactions,
-            dailyInteractions
+        SocialProfile {
+          facebookEngagements {
+            total_count
           }
         }
       }

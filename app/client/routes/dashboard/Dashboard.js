@@ -24,11 +24,10 @@ class Dashboard extends React.Component {
           <span>Savings: ${this.props.bank.BankAccount.BankAccountById.savings} </span>
 
           <h2> Your social interactions </h2>
-          <span>interactions: {this.props.social.SocialProfile.SocialProfileById.interactions} </span><br/>
-          <span>dailyInteractions: {this.props.social.SocialProfile.SocialProfileById.dailyInteractions} </span>
+          <span>interactions: {this.props.social.SocialProfile.facebookEngagements.total_count} </span><br/>
 
           <h2> Your social interactions </h2>
-          <span>Calculated Savings: ${this.props.social.SocialProfile.SocialProfileById.interactions * .05} </span>
+          <span>Calculated Savings: ${this.props.social.SocialProfile.facebookEngagements.total_count * .05} </span>
 
         </div>
       </div>

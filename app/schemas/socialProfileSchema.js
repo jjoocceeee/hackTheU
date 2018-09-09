@@ -12,7 +12,7 @@ SocialProfileQueriesTC.addFields({
   SocialProfileMany: SocialProfileTC.getResolver('findMany'),
   SocialProfileCount: SocialProfileTC.getResolver('count'),
   SocialProfilePagination: SocialProfileTC.getResolver('pagination'),
-  SocialProfilefacebookEngagements: SocialProfileTC.getResolver('facebookEngagements')
+  facebookEngagements: SocialProfileTC.getResolver('facebookEngagements')
 });
 
 SocialProfileMutationsTC.addFields({
@@ -24,6 +24,5 @@ SocialProfileMutationsTC.addFields({
   // SocialProfileRemoveOne: SocialProfileTC.getResolver('removeOne'),
   // SocialProfileRemoveMany: SocialProfileTC.getResolver('removeMany')
   SocialProfileUpdateTotalInteractions: SocialProfileTC.getResolver('UpdateTotalInteractions'),
-  
-});
 
+});

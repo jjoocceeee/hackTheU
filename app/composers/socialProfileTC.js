@@ -2,6 +2,7 @@ import { composeWithMongoose } from 'graphql-compose-mongoose/node8';
 import { SocialProfile } from '../models';
 import { GQC, TypeComposer, InputTypeComposer, Resolver } from 'graphql-compose';
 import { GraphQLNonNull } from 'graphql';
+import _ from 'lodash';
 
 const customizationOptions = {
   description: "The main user",
@@ -20,11 +21,18 @@ export default SocialProfileTC;
 
 SocialProfileTC.addResolver(new Resolver({
   name: 'facebookEngagements',
-	description: 'bla',
+	description: 'returns the total reactions on the users posts',
+  type: TypeComposer.create({
+    name: "Engagements",
+    fields: {
+      total_count: "Int"
+    }
+  }),
   resolve: async ({ source, args, context, info }) => {
     var res = await context.fb.api("me/feed?fields=reactions.summary(true)", { access_token: process.env.FACEBOOK_ACCESS_TOKEN });
-    console.log(res.data[0].reactions);
-    return SocialProfileTC.findOne({_id:context.user.SocialProfile});
+    return {
+      total_count: _.sumBy(res.data, o => o.reactions.summary.total_count)
+    };
   }
 }));
 
@@ -38,7 +46,7 @@ SocialProfileTC.addResolver(new Resolver({
     SocialProfile.updateOn({_id:context.user.socialProfile,}, {$set:{
       interactions : Total + daily.dailyInteractions
     }});
-    
+
     console.log(res.data[0].reactions);
     return SocialProfileTC.findOne({_id:context.user.SocialProfile});
   }
@@ -53,7 +61,7 @@ SocialProfileTC.addResolver(new Resolver({
 //     SocialProfile.updateOn({_id:context.user.socialProfile,}, {$set:{
 //       interactions : Total + daily.dailyInteractions
 //     }});
-    
+
 //     console.log(res.data[0].reactions);
 //     return null;
 //   }
@@ -68,5 +76,3 @@ SocialProfileTC.addResolver(new Resolver({
 //   console.log(args);
 //   return null;
 // },
-
-
