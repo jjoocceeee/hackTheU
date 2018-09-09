@@ -61,6 +61,11 @@ app.use(express.static(require("path").join(__dirname, "public"), {
 }));
 // ============== /PUBLIC =============
 
+// ============== API =============
+import { Facebook, FacebookApiException } from 'fb';
+const fb = new Facebook();
+// ============== /API =============
+
 // ============== GRAPHQL =============
 import { ApolloServer, graphiqlExpress } from 'apollo-server-express';
 import { express as voyagerMiddleware } from 'graphql-voyager/middleware';
@@ -103,7 +108,7 @@ const formatError = error => {
 }
 
 const context = ({req, res}) => {
-  return require('./context')({req, db, res})
+  return require('./context')({req, db, res, fb})
 }
 
 import { default as graphqlSchema } from './schema';
