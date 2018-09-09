@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
+import bcrypt from 'bcrypt-nodejs';
+import findOrCreate from 'findorcreate-promise';
 
 const Types = mongoose.Schema.Types;
 const UserSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    description: "The primary email of the user.",
+    index: true
+  },
   username: {
     type: String,
     required: true,
@@ -18,10 +26,10 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
     description: "Max amount of money to put into savings account",
-    index: true
+    default: 1000
   },
   BankAccount: {
-    type: mongoose.Schema.Types.ObjectId, 
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'BankAccount'
   },
   socialProfileID: {
@@ -32,6 +40,8 @@ const UserSchema = new mongoose.Schema({
     description: 'The ids of a users social profiles.',
   }
 }, { timestamps: true });
+
+UserSchema.plugin(findOrCreate);
 
 // UserSchema.pre('save', async function(next)
 // {

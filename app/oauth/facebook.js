@@ -18,12 +18,12 @@ const extractProfile = profile => {
   };
 }
 
-export const googleStrategy = new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL:`${process.env.WEB_URI}/auth/google/callback`,
-    passReqToCallback: true
-  }, async (req, accessToken, refreshToken, profile, done) => {
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL:`${process.env.WEB_URI}/auth/facebook/callback`,
+  },
+  function(accessToken, refreshToken, profile, done) {
     try
     {
       const user = await Handler({req, accessToken, refreshToken, profile});
@@ -45,7 +45,7 @@ export const googleStrategy = new GoogleStrategy({
       else done(null, null);
     }
   }
-);
+));
 
 const Handler = async ({req, accessToken, refreshToken, profile}) => {
   let user = await GetUser({
@@ -55,9 +55,8 @@ const Handler = async ({req, accessToken, refreshToken, profile}) => {
     username: profile.id
   });
   let gu = await CreateGoogleUser(profile);
-  console.log(gu);
-  console.log(user);
-  await User.updateOne({_id: user._id}, { $set: { googleId: gu._id } });
+
+  await User.update({_id: user._id}, { $set: { googleId: gu._id }, $inc: { signInCount: 1 } });
   return user;
 }
 
