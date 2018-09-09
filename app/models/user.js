@@ -9,14 +9,14 @@ const UserSchema = new mongoose.Schema({
     index: true
   },
   googleId: {
-    type: Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'GoogleUser',
     description: 'The id of the google user in the database.',
     index: true
   },
   socialIds: {
     type: [{
-      type: Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: 'GoogleUser',
     }],
     description: 'The ids of a users social profiles.',
