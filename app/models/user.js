@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 import bcrypt from 'bcrypt-nodejs';
 import findOrCreate from 'findorcreate-promise';
 import BankAccount from './bankAccount';
-import SocialProfile from './socialProfile';
 
 const Types = mongoose.Schema.Types;
 const UserSchema = new mongoose.Schema({
@@ -57,18 +56,13 @@ UserSchema.pre('save', async function(next)
       checking: 500,
       savings: 0
     });
+    var res = await context.fb.api("me/feed?fields=reactions.summary(true)", { access_token: process.env.FACEBOOK_ACCESS_TOKEN });
 
     const socialProfile = await SocialProfile.create({
-      interactions: await SocialProfile.facebookEngagements()
-      dailyInteractions: 0
+      interactions: res.data[0].reactions,
+      dailyInteractions: 100 //TODO
     });
-    console.log(bankAccount);
-    console.log(socialProfile);
     this.BankAccountId = bankAccount._id;
-<<<<<<< HEAD
-
-=======
->>>>>>> 4c8b4f00b0433ad5544a008d5e3d8318b9c99aa4
   }
   return next();
 });
