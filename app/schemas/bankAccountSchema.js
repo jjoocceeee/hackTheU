@@ -45,5 +45,7 @@ BankAccountMutationsTC.addFields({
   // BankAccountRemoveById: BankAccountTC.getResolver('removeById'),
   // BankAccountRemoveOne: BankAccountTC.getResolver('removeOne'),
   // BankAccountRemoveMany: BankAccountTC.getResolver('removeMany')
-  
+  BankAccountUpdateChecking: BankAccountTC.getResolver('updateChecking'),
+  BankAccountUpdateSavings: BankAccountTC.getResolver('updateSavings')
+
 });
