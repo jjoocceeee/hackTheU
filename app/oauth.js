@@ -31,7 +31,7 @@ const HandleRedirect = ({req, res, pass}) => {
     {
       delete(req.session.redirect);
     }
-    res.redirect(`${process.env.WEB_URI}${DEVELOPMENT ? '/graphiql' : '/'}`);
+    res.redirect(`${process.env.WEB_URI}${DEVELOPMENT ? '/dashboard' : '/'}`);
   }
 }
 
