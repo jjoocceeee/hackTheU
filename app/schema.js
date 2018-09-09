@@ -1,23 +1,49 @@
-import mongoose from 'mongoose';
-import { composeWithMongoose } from 'graphql-compose-mongoose/node8';
-import { schemaComposer } from 'graphql-compose';
+const {schemaComposer} = require('graphql-compose');
 
-import {
+const {
   UserQueries,
-  UserMutations,
-  SocialProfileQueries,
-  SocialProfileMutations
-} from './schemas';
+  UserMutations
+} = require('./schemas');
 
-schemaComposer.Query.addFields({
-  ...UserQueries,
-  ...SocialProfileQueries,
+schemaComposer.rootQuery().addFields({
+  user: {
+    type: UserQueries.getType(),
+    description: 'User information.',
+    resolve: () => ({})
+  }
 });
 
-schemaComposer.Mutation.addFields({
-  ...UserMutations,
-  ...SocialProfileMutations,
+schemaComposer.rootMutation().addFields({
+  user: {
+    type: UserMutations.getType(),
+    description: 'User information.',
+    resolve: () => ({})
+  }
 });
 
 const graphqlSchema = schemaComposer.buildSchema();
 export default graphqlSchema;
+
+// import mongoose from 'mongoose';
+// import { composeWithMongoose } from 'graphql-compose-mongoose/node8';
+// import { schemaComposer } from 'graphql-compose';
+
+// import {
+//   UserQueries,
+//   UserMutations,
+//   SocialProfileQueries,
+//   SocialProfileMutations
+// } from './schemas';
+
+// schemaComposer.Query.addFields({
+//   ...UserQueries,
+//   ...SocialProfileQueries,
+// });
+
+// schemaComposer.Mutation.addFields({
+//   ...UserMutations,
+//   ...SocialProfileMutations,
+// });
+
+// const graphqlSchema = schemaComposer.buildSchema();
+// export default graphqlSchema;

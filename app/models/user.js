@@ -20,7 +20,11 @@ const UserSchema = new mongoose.Schema({
     description: "Max amount of money to put into savings account",
     index: true
   },
-  socialIds: {
+  BankAccount: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'BankAccount'
+  },
+  socialProfileID: {
     type: [{
       type: Types.ObjectId,
       ref: 'GoogleUser',

@@ -1,5 +1,5 @@
 import { composeWithMongoose } from 'graphql-compose-mongoose/node8';
-import { bankAccount } from '../models';
+import { BankAccount } from '../models';
 const customizationOptions = {
   description: "The main user",
   resolvers: {
@@ -15,7 +15,7 @@ const customizationOptions = {
 export const BankAccountTC = composeWithMongoose(BankAccount, customizationOptions);
 export default BankAccountTC;
 
-// BankAccountTC.addResolver(new Resolver({
+// bankAccountTC.addResolver(new Resolver({
 //   name: 'facebookEngagements',
 // 	description: 'bla',
 //   type: {
