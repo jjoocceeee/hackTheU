@@ -19,8 +19,17 @@ export default BankAccountTC;
 
 
 BankAccountTC.addResolver(new Resolver({
-  name: 'bankAccountTransfer',
-	description: 'Will transfer .10 for every like.',
+  name: 'updateChecking',
+	description: 'Will update Checking account.',
+  resolve: async ({ source, args, context, info }) => {
+    console.log(args);
+    return null;
+  }
+}));
+
+BankAccountTC.addResolver(new Resolver({
+  name: 'updateSavings',
+	description: 'Will update Saving account.',
   resolve: async ({ source, args, context, info }) => {
     console.log(args);
     return null;
