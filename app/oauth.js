@@ -55,7 +55,7 @@ const GenerateJwt = (req, res) => {
   res.cookie('jwt', token, opts);
 }
 
-module.exports = (app) => {
+ export const OAuth = (app) => {
   app.get('/auth/verify', async (req, res) => {
     await User.update({ "emailVerification.hash": req.query.id }, { $set: { verified: true, emailVerification: null } });
     res.redirect(req.query.redirect || process.env.WEB_URI);
@@ -80,3 +80,5 @@ module.exports = (app) => {
     }
   );
 }
+
+export default OAuth;
