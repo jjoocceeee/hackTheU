@@ -7,6 +7,11 @@ const SocialProfileSchema = new mongoose.Schema({
     description: "The total number of interactions with a users' posts.",
     index: true
   },
+  dailyInteractions: {
+    type: Number,
+    description: "The interactions for the current day.",
+    index: true
+  }
 }, { timestamps: true });
 
 

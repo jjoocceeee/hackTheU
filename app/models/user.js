@@ -1,6 +1,10 @@
+import { create } from 'domain';
+
 const mongoose = require('mongoose');
 import bcrypt from 'bcrypt-nodejs';
 import findOrCreate from 'findorcreate-promise';
+import BankAccount from './bankAccount';
+import SocialProfile from './socialProfile';
 
 const Types = mongoose.Schema.Types;
 const UserSchema = new mongoose.Schema({
@@ -28,7 +32,7 @@ const UserSchema = new mongoose.Schema({
     description: "Max amount of money to put into savings account",
     default: 1000
   },
-  BankAccount: {
+  BankAccountId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'BankAccount'
   },
@@ -43,25 +47,24 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(findOrCreate);
 
-// UserSchema.pre('save', async function(next)
-// {
-//   return next();
-// });
-
-// UserSchema.plugin(findOrCreate);
-
 UserSchema.pre('save', async function(next)
 {
   var user = this;
-  // Copy the username field into the unique.
-  // user.username_unique = user.username;
+
   if (this.isNew)
   {
     const bankAccount = await BankAccount.create({
       checking: 500,
       savings: 0
     });
-    // this.bankingid = banking._id;
+
+    const socialProfile = await SocialProfile.create({
+      interactions: 1237,
+      dailyInteractions: 74
+    });
+    console.log(bankAccount);
+    console.log(socialProfile);
+    this.BankAccountId = bankAccount._id;
   }
   return next();
 });

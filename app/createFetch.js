@@ -34,10 +34,11 @@ function createFetch(
   const defaults = {
     method: 'POST', // handy with GraphQL backends
     mode: baseUrl ? 'cors' : 'same-origin',
-    credentials: baseUrl ? 'include' : 'same-origin',
+    credentials: 'include',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWI5NTQ0MzYxOGM2ZThmODM0NzEyOWQ5IiwiZXhwIjoxNTM5MTAxNjg2LCJpYXQiOjE1MzY1MDk2ODZ9.hAXGZaVHXR1wkHmB0FVayD216UWRYf8hwFX7e6Ex0AA',
       ...(cookie ? { Cookie: cookie } : null),
     },
   };
@@ -50,7 +51,9 @@ function createFetch(
       const result = await graphql(
         schema,
         query.query,
-        { request: {} }, // fill in request vars needed by graphql
+        { request: {
+          headers: defaults.headers
+        } }, // fill in request vars needed by graphql
         null,
         query.variables,
       );
@@ -59,7 +62,6 @@ function createFetch(
         json: () => Promise.resolve(result),
       });
     }
-
     return isGraphQL || url.startsWith('/api')
       ? fetch(`${baseUrl}${url}`, {
           ...defaults,

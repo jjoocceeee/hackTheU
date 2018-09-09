@@ -12,11 +12,25 @@ import Home from './Home';
 import Layout from '../../components/Layout';
 
 async function action({ fetch }) {
+  const resp = await fetch('/graphql', {
+    body: JSON.stringify({
+      query: `{
+        user {
+          userSignedIn {
+            username
+          }
+        }
+      }
+      `,
+    }),
+  });
+  const { data } = await resp.json();
+  let user = data.user.userSignedIn;
   return {
     title: 'Home',
     chunks: ['home'],
     component: (
-      <Layout>
+      <Layout user={user}>
         <Home />
       </Layout>
     ),

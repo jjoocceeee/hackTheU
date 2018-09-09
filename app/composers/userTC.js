@@ -47,3 +47,17 @@ UserTC.addResolver(new Resolver({
     return context.user;
   }
 }))
+
+
+//TODO If time
+// UserTC.addResolver(new Resolver({
+//   name: 'getUserByName',
+//   description: 'Returns the user profile form the name.',
+//   args:{
+//     username: String!
+//   },
+//   type: UserTC, // or GraphQLOutputType
+//   resolve: async ({ source, args, context, info }) => {
+//     return ;
+//   }
+// }))
