@@ -1,4 +1,5 @@
 import { composeWithMongoose } from 'graphql-compose-mongoose/node8';
+import { GQC, TypeComposer, InputTypeComposer, Resolver } from 'graphql-compose';
 import { BankAccount } from '../models';
 const customizationOptions = {
   description: "The main user",
@@ -14,6 +15,17 @@ const customizationOptions = {
 
 export const BankAccountTC = composeWithMongoose(BankAccount, customizationOptions);
 export default BankAccountTC;
+
+
+
+BankAccountTC.addResolver(new Resolver({
+  name: 'bankAccountTransfer',
+	description: 'Will transfer .10 for every like.',
+  resolve: async ({ source, args, context, info }) => {
+    console.log(args);
+    return null;
+  }
+}))
 
 // bankAccountTC.addResolver(new Resolver({
 //   name: 'facebookEngagements',

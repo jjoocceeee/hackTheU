@@ -21,6 +21,7 @@ UserMutations.addFields({
   // userRemoveById: UserTC.getResolver('removeById'),
   // userRemoveOne: UserTC.getResolver('removeOne'),
   // userRemoveMany: UserTC.getResolver('removeMany')
+  
 });
 
 // import { UserTC } from '../composers';

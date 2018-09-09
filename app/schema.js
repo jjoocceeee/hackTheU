@@ -1,3 +1,7 @@
+import { SocialProfileQueriesTC, SocialProfileMutationsTC,
+      BankAccountQueriesTC, BankAccountMutationsTC
+  } from './schemas';
+
 const {schemaComposer} = require('graphql-compose');
 
 const {
@@ -10,6 +14,16 @@ schemaComposer.rootQuery().addFields({
     type: UserQueries.getType(),
     description: 'User information.',
     resolve: () => ({})
+  },
+  SocialProfile: {
+    type: SocialProfileQueriesTC.getType(),
+    description: 'Bank Information.',
+    resolve: () => ({})
+  },
+  BankAccount: {
+    type: BankAccountQueriesTC.getType(),
+    description: 'Bank Information.',
+    resolve: () => ({})
   }
 });
 
@@ -18,7 +32,18 @@ schemaComposer.rootMutation().addFields({
     type: UserMutations.getType(),
     description: 'User information.',
     resolve: () => ({})
+  },
+  SocialProfile: {
+    type: SocialProfileMutationsTC.getType(),
+    description: 'Bank Information.',
+    resolve: () => ({})
+  },
+  BankAccount: {
+    type: BankAccountMutationsTC.getType(),
+    description: 'Bank Information.',
+    resolve: () => ({})
   }
+
 });
 
 const graphqlSchema = schemaComposer.buildSchema();
