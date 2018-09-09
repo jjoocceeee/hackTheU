@@ -24,7 +24,8 @@ const UserSchema = new mongoose.Schema({
     index: true
   },
   maxSavings: {
-    type: String,
+    type: Number,
+    required: true,
     description: "Max amount of money to put into savings account",
     default: 1000
   },
@@ -54,28 +55,21 @@ UserSchema.pre('save', async function(next)
 {
   var user = this;
   // Copy the username field into the unique.
-  user.username_unique = user.username;
-    // only hash the password if it has been modified (or is new)
-  if (user.isModified('password'))
-  {
-    // generate a salt & hash the password using our new salt
-    const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
-    const hash = await bcrypt.hash(user.password, salt);
-    user.password = hash;
-  }
+  // user.username_unique = user.username;
   if (this.isNew)
   {
     const bankAccount = await BankAccount.create({
       checking: 500,
       savings: 0
     });
+<<<<<<< HEAD
     this.BankAccountId = bankAccount._id;
+=======
+    // this.bankingid = banking._id;
+>>>>>>> 30d2cba4438c9c6cb5423ffbc38cb2b5bfd6cacc
   }
   return next();
 });
-
-
-
 
 
 export const User = mongoose.model('User', UserSchema);
