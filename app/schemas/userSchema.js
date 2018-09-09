@@ -10,7 +10,8 @@ UserQueries.addFields({
   userOne: UserTC.getResolver('findOne'),
   userMany: UserTC.getResolver('findMany'),
   userCount: UserTC.getResolver('count'),
-  userPagination: UserTC.getResolver('pagination')
+  userPagination: UserTC.getResolver('pagination'),
+  userSignedIn: UserTC.getResolver('userSignedIn')
 });
 
 UserMutations.addFields({
@@ -21,7 +22,7 @@ UserMutations.addFields({
   // userRemoveById: UserTC.getResolver('removeById'),
   // userRemoveOne: UserTC.getResolver('removeOne'),
   // userRemoveMany: UserTC.getResolver('removeMany')
-  
+
 });
 
 // import { UserTC } from '../composers';
@@ -45,7 +46,3 @@ UserMutations.addFields({
 //   // userRemoveOne: UserTC.getResolver('removeOne'),
 //   // userRemoveMany: UserTC.getResolver('removeMany'),
 // }
-
-
-
-

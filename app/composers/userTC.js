@@ -2,6 +2,7 @@ import { composeWithMongoose } from 'graphql-compose-mongoose/node8';
 import { User } from '../models';
 import { SocialProfileTC } from './SocialProfileTC';
 import { BankAccountTC } from './BankAccountTC';
+import { GQC, TypeComposer, Resolver } from 'graphql-compose';
 
 
 const customizationOptions = {
@@ -36,3 +37,13 @@ UserTC.addRelation('SocialProfile', {
 });
 
 
+// ======================= Resolvers ==============================
+
+UserTC.addResolver(new Resolver({
+  name: 'userSignedIn',
+	description: 'Returns the user that is signed in, else null.',
+  type: UserTC, // or GraphQLOutputType
+  resolve: async ({ source, args, context, info }) => {
+    return context.user;
+  }
+}))
