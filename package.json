@@ -44,7 +44,7 @@
     "express-session": "^1.15.6",
     "fb": "^2.0.0",
     "findorcreate-promise": "^1.2.0",
-    "graphiql": "^0.11.11",
+    "graphiql": "^1.4.7",
     "graphql": "^0.13.2",
     "graphql-compose": "^5.0.2",
     "graphql-compose-mongoose": "^5.0.0",
